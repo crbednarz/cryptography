@@ -410,12 +410,6 @@ fn serialize_safebags<'p>(
     safebags: &[cryptography_x509::pkcs12::SafeBag<'_>],
     encryption_details: &KeySerializationEncryption<'_>,
 ) -> CryptographyResult<pyo3::Bound<'p, pyo3::types::PyBytes>> {
-    if safebags.is_empty() {
-        return Err(CryptographyError::from(
-            pyo3::exceptions::PyValueError::new_err("Cannot serialize PKCS12 with no safebags"),
-        ));
-    }
-
     let mut auth_safe_contents = vec![];
     let (
         plain_safebag_contents,
