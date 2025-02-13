@@ -45,7 +45,7 @@ coverage==7.2.7 ; python_full_version < '3.8'
     # via pytest-cov
 coverage==7.6.1 ; python_full_version == '3.8.*'
     # via pytest-cov
-coverage==7.6.10 ; python_full_version >= '3.9'
+coverage==7.6.12 ; python_full_version >= '3.9'
     # via pytest-cov
 distlib==0.3.9
     # via virtualenv
@@ -113,7 +113,9 @@ markupsafe==3.0.2 ; python_full_version >= '3.9'
     # via jinja2
 mypy==1.4.1 ; python_full_version < '3.8'
     # via cryptography (pyproject.toml)
-mypy==1.14.1 ; python_full_version >= '3.8'
+mypy==1.15.0 ; python_full_version == '3.8.*'
+    # via cryptography (pyproject.toml)
+mypy==1.15.0 ; python_full_version >= '3.9'
     # via cryptography (pyproject.toml)
 mypy-extensions==1.0.0
     # via mypy
@@ -121,7 +123,7 @@ nh3==0.2.20 ; python_full_version >= '3.8'
     # via readme-renderer
 nox==2024.4.15 ; python_full_version < '3.8'
     # via cryptography (pyproject.toml)
-nox==2024.10.9 ; python_full_version >= '3.8'
+nox==2025.2.9 ; python_full_version >= '3.8'
     # via cryptography (pyproject.toml)
 packaging==24.0 ; python_full_version < '3.8'
     # via
@@ -197,7 +199,7 @@ pytest-xdist==3.5.0 ; python_full_version < '3.8'
     # via cryptography (pyproject.toml)
 pytest-xdist==3.6.1 ; python_full_version >= '3.8'
     # via cryptography (pyproject.toml)
-pytz==2024.2 ; python_full_version < '3.9'
+pytz==2025.1 ; python_full_version < '3.9'
     # via babel
 readme-renderer==37.3 ; python_full_version < '3.8'
     # via cryptography (pyproject.toml)
@@ -211,7 +213,7 @@ requests==2.32.3 ; python_full_version >= '3.8'
     # via
     #   sphinx
     #   sphinxcontrib-spelling
-ruff==0.9.4
+ruff==0.9.6
     # via cryptography (pyproject.toml)
 six==1.17.0 ; python_full_version < '3.8'
     # via bleach
@@ -310,11 +312,11 @@ urllib3==2.2.3 ; python_full_version == '3.8.*'
     # via requests
 urllib3==2.3.0 ; python_full_version >= '3.9'
     # via requests
-uv==0.5.26 ; python_full_version >= '3.8'
+uv==0.5.31 ; python_full_version >= '3.8'
     # via nox
 virtualenv==20.26.6 ; python_full_version < '3.8'
     # via nox
-virtualenv==20.29.1 ; python_full_version >= '3.8'
+virtualenv==20.29.2 ; python_full_version >= '3.8'
     # via nox
 webencodings==0.5.1 ; python_full_version < '3.8'
     # via bleach

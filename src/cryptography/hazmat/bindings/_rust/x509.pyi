@@ -201,10 +201,69 @@ class PolicyBuilder:
     def time(self, new_time: datetime.datetime) -> PolicyBuilder: ...
     def store(self, new_store: Store) -> PolicyBuilder: ...
     def max_chain_depth(self, new_max_chain_depth: int) -> PolicyBuilder: ...
+    def extension_policies(
+        self, new_ca_policy: ExtensionPolicy, new_ee_policy: ExtensionPolicy
+    ) -> PolicyBuilder: ...
     def build_client_verifier(self) -> ClientVerifier: ...
     def build_server_verifier(
         self, subject: x509.verification.Subject
     ) -> ServerVerifier: ...
+
+class Policy:
+    @property
+    def max_chain_depth(self) -> int: ...
+    @property
+    def subject(self) -> x509.verification.Subject | None: ...
+    @property
+    def validation_time(self) -> datetime.datetime: ...
+    @property
+    def extended_key_usage(self) -> x509.ObjectIdentifier: ...
+    @property
+    def minimum_rsa_modulus(self) -> int: ...
+
+class Criticality:
+    CRITICAL: Criticality
+    AGNOSTIC: Criticality
+    NON_CRITICAL: Criticality
+
+type MaybeExtensionValidatorCallback[T: x509.ExtensionType] = typing.Callable[
+    [
+        Policy,
+        x509.Certificate,
+        T | None,
+    ],
+    None,
+]
+
+type PresentExtensionValidatorCallback[T: x509.ExtensionType] = (
+    typing.Callable[
+        [Policy, x509.Certificate, T],
+        None,
+    ]
+)
+
+class ExtensionPolicy:
+    @staticmethod
+    def permit_all() -> ExtensionPolicy: ...
+    @staticmethod
+    def webpki_defaults_ca() -> ExtensionPolicy: ...
+    @staticmethod
+    def webpki_defaults_ee() -> ExtensionPolicy: ...
+    def require_not_present(
+        self, extension_type: type[x509.ExtensionType]
+    ) -> ExtensionPolicy: ...
+    def may_be_present[T: x509.ExtensionType](
+        self,
+        extension_type: type[T],
+        criticality: Criticality,
+        validator: MaybeExtensionValidatorCallback[T] | None,
+    ) -> ExtensionPolicy: ...
+    def require_present[T: x509.ExtensionType](
+        self,
+        extension_type: type[T],
+        criticality: Criticality,
+        validator: PresentExtensionValidatorCallback[T] | None,
+    ) -> ExtensionPolicy: ...
 
 class VerifiedClient:
     @property
@@ -214,11 +273,13 @@ class VerifiedClient:
 
 class ClientVerifier:
     @property
+    def policy(self) -> Policy: ...
+    @property
     def validation_time(self) -> datetime.datetime: ...
     @property
-    def store(self) -> Store: ...
-    @property
     def max_chain_depth(self) -> int: ...
+    @property
+    def store(self) -> Store: ...
     def verify(
         self,
         leaf: x509.Certificate,
@@ -227,13 +288,15 @@ class ClientVerifier:
 
 class ServerVerifier:
     @property
+    def policy(self) -> Policy: ...
+    @property
     def subject(self) -> x509.verification.Subject: ...
     @property
     def validation_time(self) -> datetime.datetime: ...
     @property
-    def store(self) -> Store: ...
-    @property
     def max_chain_depth(self) -> int: ...
+    @property
+    def store(self) -> Store: ...
     def verify(
         self,
         leaf: x509.Certificate,

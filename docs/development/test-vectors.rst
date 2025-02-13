@@ -47,6 +47,26 @@ Asymmetric ciphers
 * RSA OAEP with custom label from the `BoringSSL evp tests`_.
 * Ed448 test vectors from :rfc:`8032`.
 * Deterministic ECDSA (:rfc:`6979`) from `OpenSSL's RFC 6979 test vectors`_.
+* ``asymmetric/PKCS8/rsa-40bitrc2.pem`` a PKCS8 encoded RSA key from GnuTLS
+  encrypted with ``pbeWithSHAAnd40BitRC2-CBC``. The password is ``baz``.
+* ``asymmetric/PKCS8/rsa-rc2-cbc.pem`` a PKCS8 encoded RSA key from GnuTLS
+  encrypted with ``RC2-CBC``. The password is ``Red Hat Enterprise Linux 7.4``.
+* ``asymmetric/PKCS8/rsa_pkcs8_pbes2_pbkdf2_2048_3des_sha224.pem`` a PKCS8
+  encoded RSA key from Mbed-TLS using ``sha224`` as the PRF for PBKDF2.
+  The password is ``PolarSSLTest``.
+* ``asymmetric/PKCS8/rsa_pkcs8_pbes2_pbkdf2_2048_3des_sha384.pem`` a PKCS8
+  encoded RSA key from Mbed-TLS using ``sha384`` as the PRF for PBKDF2.
+  The password is ``PolarSSLTest``.
+* ``asymmetric/PKCS8/rsa_pkcs8_pbes2_pbkdf2_2048_3des_sha512.pem`` a PKCS8
+  encoded RSA key from Mbed-TLS using ``sha512`` as the PRF for PBKDF2.
+  The password is ``PolarSSLTest``.
+* ``asymmetric/PKCS8/rsa-aes-192-cbc.pem`` a PKCS8 encoded RSA key from Mbed-TLS
+  encrypted with ``AES-192-CBC``. The password is ``PolarSSLTest``.
+* ``asymmetric/PKCS8/ed25519-scrypt.pem`` a PKCS8 encoded Ed25519 key from
+  RustCrypto using scrypt as the KDF. The password is ``hunter42``.
+* ``asymmetric/PKCS8/rsa-rc2-cbc-effective-key-length.pem`` a PKCS8 encoded key
+  encrypted with ``RC2-CBC`` with the ``effectiveKeyLength`` parameter set to
+  258. This is an invalid key.
 
 
 Custom asymmetric vectors
@@ -601,6 +621,8 @@ Custom X.509 Vectors
 * ``admissions_extension_authority_not_provided.pem`` - A certificate containing
   the ``Admissions`` extension with no admissions and no admission authority,
   signed by ``x509/custom/ca/rsa_ca.pem`` CA.
+* ``no_sans.pem`` - Leaf certificate issued by ``x509/custom/ca/rsa_ca.pem``
+  with no SAN extension.
 
 Custom X.509 Request Vectors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

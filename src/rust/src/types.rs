@@ -47,6 +47,8 @@ pub static DEPRECATED_IN_42: LazyPyImport =
     LazyPyImport::new("cryptography.utils", &["DeprecatedIn42"]);
 pub static DEPRECATED_IN_43: LazyPyImport =
     LazyPyImport::new("cryptography.utils", &["DeprecatedIn43"]);
+pub static DEPRECATED_IN_45: LazyPyImport =
+    LazyPyImport::new("cryptography.utils", &["DeprecatedIn45"]);
 
 pub static ENCODING: LazyPyImport = LazyPyImport::new(
     "cryptography.hazmat.primitives.serialization",
@@ -178,6 +180,9 @@ pub static OID_NAMES: LazyPyImport = LazyPyImport::new("cryptography.hazmat._oid
 pub static REASON_FLAGS: LazyPyImport = LazyPyImport::new("cryptography.x509", &["ReasonFlags"]);
 pub static ATTRIBUTE: LazyPyImport = LazyPyImport::new("cryptography.x509", &["Attribute"]);
 pub static ATTRIBUTES: LazyPyImport = LazyPyImport::new("cryptography.x509", &["Attributes"]);
+
+pub static EXTENSION_TYPE: LazyPyImport =
+    LazyPyImport::new("cryptography.x509", &["ExtensionType"]);
 
 pub static CRL_NUMBER: LazyPyImport = LazyPyImport::new("cryptography.x509", &["CRLNumber"]);
 pub static DELTA_CRL_INDICATOR: LazyPyImport =
